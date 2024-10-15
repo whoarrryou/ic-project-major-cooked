@@ -1,8 +1,0 @@
-# Object files
-*.o
-
-# Compiled binary
-my_gtk_app
-
-# Build directory
-/build/

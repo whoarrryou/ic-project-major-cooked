@@ -6,7 +6,7 @@ int main(){
 
     printf("we are cooked bro...!@!@!");
     system("cls");
-    printf("Aayein baigan");
+    //printf("Aayein baigan");
 
     return 0;
 }

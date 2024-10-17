@@ -1,9 +1,7 @@
-/*Basic Blueprint NOT ACTUAL CODE*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 
 #define MAX_RECIPES 100
 #define MAX_NAME_LEN 50
@@ -26,6 +24,10 @@ void saveRecipes();
 void loadRecipes();
 void errorHandling(const char *message);
 void clearInputBuffer();
+void displayWelcomeArt();
+void displayExitArt();
+void drawSeparator();
+void setColor(int color);
 
 // Global array to hold recipes and a counter
 Recipe recipes[MAX_RECIPES];
@@ -37,11 +39,16 @@ void menu() {
     int choice;
 
     while (1) {
-        printf("\nRecipe Storing App\n");
+        setColor(7);  // Reset to default white
+        printf("\n");
+        drawSeparator();
+        printf("          Recipe Storing App          \n");
+        drawSeparator();
         printf("1. Add a Recipe\n");
         printf("2. Display All Recipes\n");
         printf("3. Search Recipe by Name\n");
         printf("4. Exit\n");
+        drawSeparator();
         printf("Enter your choice: ");
         scanf("%d", &choice);
         clearInputBuffer();  // Clear the buffer after taking user input
@@ -58,21 +65,22 @@ void menu() {
                 break;
             case 4:
                 saveRecipes();
+                displayExitArt();
                 exit(0);
             default:
+                setColor(12);  // Red for errors
                 printf("Invalid choice. Please try again.\n");
-    
+                setColor(7);  // Reset to default white
         }
-
-        // system("cls");
     }
-
 }
 
 // Function to add a new recipe
 void addRecipe() {
     if (recipe_count >= MAX_RECIPES) {
+        setColor(12);  // Red for errors
         printf("Recipe storage is full!\n");
+        setColor(7);  // Reset to default white
         return;
     }
 
@@ -96,22 +104,29 @@ void addRecipe() {
 
     recipes[recipe_count++] = newRecipe;
 
+    setColor(10);  // Green for success
     printf("Recipe added successfully!\n");
+    setColor(7);  // Reset to default white
 }
 
 // Function to display all recipes
 void displayRecipes() {
     if (recipe_count == 0) {
+        setColor(12);  // Red for errors
         printf("No recipes found.\n");
+        setColor(7);  // Reset to default white
         return;
     }
 
     for (int i = 0; i < recipe_count; i++) {
-        printf("\nRecipe %d:\n", i + 1);
+        printf("\n");
+        drawSeparator();
+        printf("Recipe %d:\n", i + 1);
         printf("Name: %s\n", recipes[i].name);
         printf("Ingredients: %s\n", recipes[i].ingredients);
         printf("Instructions: %s\n", recipes[i].instructions);
         printf("Preparation time: %d minutes\n", recipes[i].prep_time);
+        drawSeparator();
     }
 }
 
@@ -125,18 +140,23 @@ void searchRecipe() {
     int found = 0;
     for (int i = 0; i < recipe_count; i++) {
         if (strcasecmp(recipes[i].name, searchName) == 0) {
-            printf("\nRecipe found:\n");
+            printf("\n");
+            drawSeparator();
+            printf("Recipe found:\n");
             printf("Name: %s\n", recipes[i].name);
             printf("Ingredients: %s\n", recipes[i].ingredients);
             printf("Instructions: %s\n", recipes[i].instructions);
             printf("Preparation time: %d minutes\n", recipes[i].prep_time);
+            drawSeparator();
             found = 1;
             break;
         }
     }
 
     if (!found) {
+        setColor(12);  // Red for errors
         printf("Recipe not found.\n");
+        setColor(7);  // Reset to default white
     }
 }
 
@@ -152,7 +172,9 @@ void saveRecipes() {
     fwrite(recipes, sizeof(Recipe), recipe_count, file);  // Save all recipes
 
     fclose(file);
+    setColor(10);  // Green for success
     printf("Recipes saved to file.\n");
+    setColor(7);  // Reset to default white
 }
 
 // Function to load recipes from a file
@@ -167,12 +189,16 @@ void loadRecipes() {
     fread(recipes, sizeof(Recipe), recipe_count, file);  // Load all recipes
 
     fclose(file);
+    setColor(10);  // Green for success
     printf("Recipes loaded from file.\n");
+    setColor(7);  // Reset to default white
 }
 
 // Error handling function
 void errorHandling(const char *message) {
+    setColor(12);  // Red for errors
     printf("Error: %s\n", message);
+    setColor(7);  // Reset to default white
     exit(1);
 }
 
@@ -182,8 +208,37 @@ void clearInputBuffer() {
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
+// Function to display welcome ASCII art
+void displayWelcomeArt() {
+    printf("\n");
+    drawSeparator();
+    printf(" WELCOME TO THE RECIPE STORING APP \n");
+    drawSeparator();
+}
+
+// Function to display exit ASCII art
+void displayExitArt() {
+    printf("\n");
+    drawSeparator();
+    printf(" THANK YOU FOR USING THE APP! \n");
+    printf(" SEE YOU NEXT TIME! \n");
+    drawSeparator();
+}
+
+// Function to draw a separator line
+void drawSeparator() {
+    printf("########################################\n");
+}
+
+// Function to set text color
+void setColor(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
+
 // Main function
 int main() {
+    displayWelcomeArt();
     loadRecipes();
     menu();
     return 0;

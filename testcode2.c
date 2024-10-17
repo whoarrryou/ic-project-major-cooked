@@ -1,6 +1,3 @@
-/*Basic Blueprint NOT ACTUAL CODE*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,6 +23,7 @@ void saveRecipes();
 void loadRecipes();
 void errorHandling(const char *message);
 void clearInputBuffer();
+void clearScreen();
 
 // Global array to hold recipes and a counter
 Recipe recipes[MAX_RECIPES];
@@ -37,23 +35,31 @@ void menu() {
     int choice;
 
     while (1) {
-        printf("\nRecipe Storing App\n");
+        clearScreen();  // Clear screen before showing menu
+
+        printf("\n============================\n");
+        printf("        Recipe Storing App        \n");
+        printf("============================\n");
         printf("1. Add a Recipe\n");
         printf("2. Display All Recipes\n");
         printf("3. Search Recipe by Name\n");
         printf("4. Exit\n");
+        printf("============================\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
         clearInputBuffer();  // Clear the buffer after taking user input
 
         switch (choice) {
             case 1:
+                clearScreen();  // Clear screen before adding a recipe
                 addRecipe();
                 break;
             case 2:
+                clearScreen();  // Clear screen before displaying recipes
                 displayRecipes();
                 break;
             case 3:
+                clearScreen();  // Clear screen before searching for recipes
                 searchRecipe();
                 break;
             case 4:
@@ -61,12 +67,16 @@ void menu() {
                 exit(0);
             default:
                 printf("Invalid choice. Please try again.\n");
-    
         }
 
-        // system("cls");
+        printf("\nPress Enter to return to the main menu...");
+        getchar();  // Pause before returning to the main menu
     }
+}
 
+// Function to clear the screen (using cls for Windows)
+void clearScreen() {
+    system("cls");
 }
 
 // Function to add a new recipe
@@ -96,7 +106,7 @@ void addRecipe() {
 
     recipes[recipe_count++] = newRecipe;
 
-    printf("Recipe added successfully!\n");
+    printf("\nRecipe added successfully!\n");
 }
 
 // Function to display all recipes

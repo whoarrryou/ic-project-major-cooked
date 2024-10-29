@@ -1,0 +1,2 @@
+1. Searching has to be improved, if found any string which is in one of the names, find it (eg. typing shahi should give shahi paneer, or just ahi should do this as well)
+2. GUI, and cross platforming between linux and windows.

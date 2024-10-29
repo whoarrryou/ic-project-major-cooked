@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../gui/gui.h" // Include your GUI header
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -270,8 +271,9 @@ void clearScreen() {
 
 // Main function
 int main() {
-    displayWelcomeArt();
-    loadRecipes();
-    menu();
+    displayWelcomeArt();   // Display the welcome message
+    loadRecipes();         // Load existing recipes from file
+    // init_gui();           // Initialize and launch the GUI
+    menu();                // Enter the text-based menu
     return 0;
 }

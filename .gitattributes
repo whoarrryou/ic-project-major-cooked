@@ -1,0 +1,2 @@
+SDL[[:space:]]project/SDL2_ttf.dll filter=lfs diff=lfs merge=lfs -text
+SDL[[:space:]]project/src/lib/libSDL2_ttf.a filter=lfs diff=lfs merge=lfs -text

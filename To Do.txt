@@ -1,2 +1,12 @@
-1. Searching has to be improved, if found any string which is in one of the names, find it (eg. typing shahi should give shahi paneer, or just ahi should do this as well)
-2. GUI, and cross platforming between linux and windows.
+To do:
+
+1) Audio
+2) Filter by genre
+3) json
+4) Randomiser + Timeslot
+5) Tuesday nonveg
+6) Blinkit
+7) Khana calories input
+8) Set calories: make full day menu
+9) Recipe variation
+10) SDL

@@ -44,7 +44,7 @@ void menu() {
         clearScreen();  // Clear screen before showing menu
         displayWelcomeArt();  // Display fancy title
         drawSeparator('=', 30);  // Decorative separator
-
+        setTextColor(13);
         typeText("\n1. Add a Recipe\n", 20);
         typeText("2. Display All Recipes\n", 20);
         typeText("3. Search Recipe by Name\n", 20);
@@ -107,7 +107,7 @@ void displayWelcomeArt() {
     setTextColor(14);  // Yellow color
     typeText("#######################################\n", 10);
     typeText("#                                     #\n", 10);
-    typeText("#   WELCOME TO THE RECIPE APP! 🍽️   #\n", 10);
+    typeText("#   WELCOME TO THE RECIPE APP!        #\n", 10);
     typeText("#                                     #\n", 10);
     typeText("#######################################\n\n", 10);
     setTextColor(7);  // Reset to default color
@@ -116,10 +116,10 @@ void displayWelcomeArt() {
 // ASCII art for exit
 void displayExitArt() {
     setTextColor(10);  // Green color
-    typeText("\nThank you for using the Recipe Storing App! 👨‍🍳👩‍🍳\n", 10);
+    typeText("\nThank you for using the Recipe Storing App! \n", 10);
     typeText("#######################################\n", 10);
     typeText("#                                     #\n", 10);
-    typeText("#   SEE YOU NEXT TIME! 🥘🍲🍜        #\n", 10);
+    typeText("#   SEE YOU NEXT TIME!                #\n", 10);
     typeText("#                                     #\n", 10);
     typeText("#######################################\n", 10);
     setTextColor(7);  // Reset to default color
@@ -171,7 +171,7 @@ void addRecipe() {
 void displayRecipes() {
     if (recipe_count == 0) {
         setTextColor(12);  // Red color for error message
-        typeText("No recipes found. 😕\n", 20);
+        typeText("No recipes found. \n", 20);
         setTextColor(7);  // Reset to default
         return;
     }
@@ -179,10 +179,10 @@ void displayRecipes() {
     for (int i = 0; i < recipe_count; i++) {
         printf("\nRecipe %d:\n", i + 1);
         drawSeparator('-', 30);  // Decorative separator
-        printf("🍽️ Name: %s\n", recipes[i].name);
-        printf("🧂 Ingredients: %s\n", recipes[i].ingredients);
-        printf("📝 Instructions: %s\n", recipes[i].instructions);
-        printf("⏱️ Preparation time: %d minutes\n", recipes[i].prep_time);
+        printf("Name: %s\n", recipes[i].name);
+        printf("Ingredients: %s\n", recipes[i].ingredients);
+        printf("Instructions: %s\n", recipes[i].instructions);
+        printf("Preparation time: %d minutes\n", recipes[i].prep_time);
         drawSeparator('-', 30);  // Decorative separator
     }
 }
@@ -192,6 +192,7 @@ void displayRecipes() {
 
 // Function to search recipes by name
 void searchRecipe() {
+    setTextColor(9);
     PlaySound("Search.wav", NULL, SND_FILENAME | SND_ASYNC);
     char searchName[MAX_NAME_LEN];
     printf("Enter the name of the recipe to search: ");
@@ -203,10 +204,10 @@ void searchRecipe() {
         if (strcasecmp(recipes[i].name, searchName) == 0) {
             printf("\nRecipe found:\n");
             drawSeparator('-', 30);  // Decorative separator
-            printf("🍽️ Name: %s\n", recipes[i].name);
-            printf("🧂 Ingredients: %s\n", recipes[i].ingredients);
-            printf("📝 Instructions: %s\n", recipes[i].instructions);
-            printf("⏱️ Preparation time: %d minutes\n", recipes[i].prep_time);
+            printf("Name: %s\n", recipes[i].name);
+            printf("Ingredients: %s\n", recipes[i].ingredients);
+            printf("Instructions: %s\n", recipes[i].instructions);
+            printf("Preparation time: %d minutes\n", recipes[i].prep_time);
             drawSeparator('-', 30);  // Decorative separator
             found = 1;
             break;
@@ -215,7 +216,7 @@ void searchRecipe() {
 
     if (!found) {
         setTextColor(12);  // Red color for error message
-        printf("Recipe not found. 😕\n");
+        printf("Recipe not found. \n");
         setTextColor(7);  // Reset to default
     }
 }

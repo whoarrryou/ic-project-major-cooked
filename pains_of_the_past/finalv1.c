@@ -455,6 +455,7 @@ void searchRecipe(){
             break;
         default:
             setTextColor(12);
+            clearScreen();
             printf("Invalid category choice.\n");
             setTextColor(13);
             searchRecipe();
@@ -485,6 +486,7 @@ void searchRecipe(){
     }
     else{
         setTextColor(12);
+        clearScreen();
         printf("Invalid choice, try again.\n");
         setTextColor(13);
         searchRecipe();

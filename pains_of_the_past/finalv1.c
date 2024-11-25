@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <stdbool.h>
 #include <process.h>
+#include <ctype.h>
 
 #define MAX_RECIPES 100
 #define MAX_NAME_LEN 50
@@ -53,13 +54,13 @@ void menu()
         printf("\t\t\t\t\t\t");
         drawSeparator('=', 39);
         setTextColor(13);
-        typeText("\n\t\t\t\t\t\t1. Add a Recipe\n", 20);
-        typeText("\t\t\t\t\t\t2. Display All Recipes\n", 20);
-        typeText("\t\t\t\t\t\t3. Search Recipe by Name\n", 20);
-        typeText("\t\t\t\t\t\t4. Exit\n", 20);
+        typeText("\n\t\t\t\t\t\t1. Add a Recipe\n", 10);
+        typeText("\t\t\t\t\t\t2. Display All Recipes\n", 10);
+        typeText("\t\t\t\t\t\t3. Search Recipe by Name\n", 10);
+        typeText("\t\t\t\t\t\t4. Exit\n", 10);
         printf("\t\t\t\t\t\t");
         drawSeparator('=', 39);
-        typeText("Enter your choice: ", 20);
+        typeText("Enter your choice: ", 10);
         char textMsg[] = "Enter your choice";
         speakText(textMsg);
         scanf("%d", &choice);
@@ -85,11 +86,11 @@ void menu()
             displayExitArt();
             exit(0);
         default:
-            typeText("Invalid choice. Please try again.\n", 20);
+            typeText("Invalid choice. Please try again.\n", 10);
             char invalidChoice[] = "Invalid choice. Please try again.";
             speakText(invalidChoice);
         }
-        typeText("\nPress Enter to return to the main menu...", 20);
+        typeText("\nPress Enter to return to the main menu...", 10);
         char returnMenu[] = "Press Enter to return to the main menu";
         speakText(returnMenu);
         getchar();
@@ -257,36 +258,141 @@ void displayRecipes()
     }
 }
 
-// Function to search recipes by name
-void searchRecipe()
+// Custom implementation of strcasestr for Windows
+char *strcasestr(const char *haystack, const char *needle)
 {
-    char searchName[MAX_NAME_LEN];
-    printf("Enter the name of the recipe to search: ");
-    fgets(searchName, MAX_NAME_LEN, stdin);
-    searchName[strcspn(searchName, "\n")] = 0;
+    if (!haystack || !needle)
+        return NULL;
 
-    int found = 0;
-    for (int i = 0; i < recipe_count; i++)
+    size_t needle_len = strlen(needle);
+
+    while (*haystack)
     {
-        if (strcasecmp(recipes[i].name, searchName) == 0)
-        {
-            printf("\nRecipe found:\n");
-            drawSeparator('-', 30);
-            printf("Name: %s\n", recipes[i].name);
-            printf("Ingredients: %s\n", recipes[i].ingredients);
-            printf("Instructions: %s\n", recipes[i].instructions);
-            printf("Preparation time: %d minutes\n", recipes[i].prep_time);
-            printf("Category: %s\n", recipes[i].category); // Display the category
-            drawSeparator('-', 30);
-            found = 1;
-            break;
-        }
+        if (strncasecmp(haystack, needle, needle_len) == 0)
+            return (char *)haystack;
+        haystack++;
     }
 
-    if (!found)
+    return NULL;
+}
+
+// Case-insensitive string comparison for the first n characters
+int strncasecmp(const char *s1, const char *s2, size_t n)
+{
+    while (n-- && *s1 && *s2)
+    {
+        char c1 = tolower((unsigned char)*s1++);
+        char c2 = tolower((unsigned char)*s2++);
+        if (c1 != c2)
+            return c1 - c2;
+    }
+    return 0;
+}
+
+// Function to search recipes by name or category
+void searchRecipe()
+{
+    int search_choice;
+    typeText("Choose search option:\n", 20);
+    typeText("1. Search by Name\n", 20);
+    typeText("2. Search by Category\n", 20);
+    typeText("Enter your choice: ", 20);
+    scanf("%d", &search_choice);
+    clearInputBuffer();
+
+    if (search_choice == 1) // Search by Name
+    {
+        char searchName[MAX_NAME_LEN];
+        typeText("Enter the name or part of the name of the recipe to search: ", 20);
+        fgets(searchName, MAX_NAME_LEN, stdin);
+        searchName[strcspn(searchName, "\n")] = 0;
+
+        int found = 0;
+        for (int i = 0; i < recipe_count; i++)
+        {
+            if (strcasestr(recipes[i].name, searchName) != NULL) // Partial match
+            {
+                printf("\nRecipe found:\n");
+                drawSeparator('-', 30);
+                printf("Name: %s\n", recipes[i].name);
+                printf("Ingredients: %s\n", recipes[i].ingredients);
+                printf("Instructions: %s\n", recipes[i].instructions);
+                printf("Preparation time: %d minutes\n", recipes[i].prep_time);
+                printf("Category: %s\n", recipes[i].category);
+                drawSeparator('-', 30);
+                found = 1;
+            }
+        }
+
+        if (!found)
+        {
+            setTextColor(12);
+            printf("No recipes found matching the name.\n");
+            setTextColor(7);
+        }
+    }
+    else if (search_choice == 2) // Search by Category
+    {
+        int category_choice;
+        typeText("\nChoose the category to search:\n", 20);
+        typeText("1. Breakfast\n", 20);
+        typeText("2. Snacks\n", 20);
+        typeText("3. Lunch\n", 20);
+        typeText("4. Dinner\n", 20);
+        typeText("Enter your choice: ", 20);
+        scanf("%d", &category_choice);
+        clearInputBuffer();
+
+        const char *category = NULL;
+        switch (category_choice)
+        {
+        case 1:
+            category = "Breakfast";
+            break;
+        case 2:
+            category = "Snacks";
+            break;
+        case 3:
+            category = "Lunch";
+            break;
+        case 4:
+            category = "Dinner";
+            break;
+        default:
+            setTextColor(12);
+            printf("Invalid category choice.\n");
+            setTextColor(7);
+            return;
+        }
+
+        int found = 0;
+        for (int i = 0; i < recipe_count; i++)
+        {
+            if (strcasecmp(recipes[i].category, category) == 0)
+            {
+                printf("\nRecipe found:\n");
+                drawSeparator('-', 30);
+                printf("Name: %s\n", recipes[i].name);
+                printf("Ingredients: %s\n", recipes[i].ingredients);
+                printf("Instructions: %s\n", recipes[i].instructions);
+                printf("Preparation time: %d minutes\n", recipes[i].prep_time);
+                printf("Category: %s\n", recipes[i].category);
+                drawSeparator('-', 30);
+                found = 1;
+            }
+        }
+
+        if (!found)
+        {
+            setTextColor(12);
+            printf("No recipes found in the '%s' category.\n", category);
+            setTextColor(7);
+        }
+    }
+    else
     {
         setTextColor(12);
-        printf("Recipe not found. \n");
+        printf("Invalid choice. Returning to the menu.\n");
         setTextColor(7);
     }
 }

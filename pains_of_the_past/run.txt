@@ -1,1 +1,3 @@
 gcc testcode6.c -o testcode6 -lwinmm
+
+gcc temptemp.c -o temptemp -lwinmm

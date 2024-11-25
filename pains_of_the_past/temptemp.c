@@ -225,7 +225,7 @@ void addRecipe()
     recipes[recipe_count++] = newRecipe;
 
     setTextColor(10);
-    typeText("\nRecipe added successfully! ✅\n", 20);
+    typeText("\nRecipe added successfully! \n", 20);
     setTextColor(7);
 }
 

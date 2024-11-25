@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include <process.h>
 #include <ctype.h>
-#include <time.h>
 
 #define MAX_RECIPES 100
 #define MAX_NAME_LEN 50
@@ -13,8 +12,7 @@
 #define MAX_INSTRUCTIONS_LEN 1000
 
 // Recipe structure
-typedef struct
-{
+typedef struct{
     char name[MAX_NAME_LEN];
     char ingredients[MAX_INGREDIENTS_LEN];
     char instructions[MAX_INSTRUCTIONS_LEN];
@@ -24,30 +22,39 @@ typedef struct
 } Recipe;
 
 const Recipe predefinedRecipes[] = {
-    {"Pancakes",
-     "Flour, Eggs, Milk, Baking Powder, Sugar",
-     "1. Mix ingredients.\n2. Heat pan and cook batter until golden brown.",
-     20,
-     "Breakfast",
-     "https://www.youtube.com/watch?v=pancakes"},
-    {"Grilled Cheese Sandwich",
-     "Bread, Cheese, Butter",
-     "1. Heat pan.\n2. Assemble sandwich.\n3. Grill until golden.",
-     10,
-     "Snacks",
-     "https://www.youtube.com/watch?v=grilledcheese"},
-    {"Spaghetti Bolognese",
-     "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic",
-     "1. Cook spaghetti.\n2. Prepare sauce.\n3. Mix and serve.",
-     40,
-     "Lunch",
-     "https://www.youtube.com/watch?v=spaghettibolognese"},
-    {"Chicken Curry",
-     "Chicken, Onion, Tomato, Spices, Cream",
-     "1. Saute onions and spices.\n2. Add chicken and cook.\n3. Add cream and simmer.",
-     45,
-     "Dinner",
-     "https://www.youtube.com/watch?v=chickencurry"}};
+    {
+        "Pancakes",
+        "Flour, Eggs, Milk, Baking Powder, Sugar",
+        "1. Mix ingredients.\n2. Heat pan and cook batter until golden brown.",
+        20,
+        "Breakfast",
+        "https://www.youtube.com/watch?v=pancakes"
+    },
+    {
+        "Grilled Cheese Sandwich",
+        "Bread, Cheese, Butter",
+        "1. Heat pan.\n2. Assemble sandwich.\n3. Grill until golden.",
+        10,
+        "Snacks",
+        "https://www.youtube.com/watch?v=grilledcheese"
+    },
+    {
+        "Spaghetti Bolognese",
+        "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic",
+        "1. Cook spaghetti.\n2. Prepare sauce.\n3. Mix and serve.",
+        40,
+        "Lunch",
+        "https://www.youtube.com/watch?v=spaghettibolognese"
+    },
+    {
+        "Chicken Curry",
+        "Chicken, Onion, Tomato, Spices, Cream",
+        "1. Saute onions and spices.\n2. Add chicken and cook.\n3. Add cream and simmer.",
+        45,
+        "Dinner",
+        "https://www.youtube.com/watch?v=chickencurry"
+    }
+};
 const int predefinedCount = sizeof(predefinedRecipes) / sizeof(predefinedRecipes[0]);
 
 // Function declarations
@@ -65,7 +72,6 @@ void displayExitArt();
 void drawSeparator(char symbol, int length);
 void typeText(const char *text, int delay_ms);
 void speakText(char text[]);
-void displayRandomRecipe();
 
 // Global array to hold recipes and a counter
 Recipe recipes[MAX_RECIPES];
@@ -73,12 +79,10 @@ int recipe_count = 0;
 const char *filename = "recipes.dat";
 
 // Main menu function
-void menu()
-{
+void menu(){
     int choice;
 
-    while (1)
-    {
+    while (1){
         clearScreen();
         displayWelcomeArt();
         printf("\t\t\t\t\t\t");
@@ -128,23 +132,19 @@ void menu()
 }
 
 // Function to clear the screen (using cls for Windows)
-void clearScreen()
-{
+void clearScreen(){
     system("cls");
 }
 
 // Function to set text color (Windows-specific)
-void setTextColor(int color)
-{
+void setTextColor(int color){
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
 }
 
 // Function to create a typing effect
-void typeText(const char *text, int delay_ms)
-{
-    while (*text)
-    {
+void typeText(const char *text, int delay_ms){
+    while (*text){
         putchar(*text++);
         fflush(stdout);  // Ensure character is printed immediately
         Sleep(delay_ms); // Delay in milliseconds
@@ -155,53 +155,14 @@ void typeText(const char *text, int delay_ms)
 void displayWelcomeArt()
 {
     static int temp = 1;
-    time_t now;
-    struct tm *localTime;
-    time(&now);                  // Get current time
-    localTime = localtime(&now); // Convert to local time
-
-    // Get the current hour (0 - 23)
-    int hour = localTime->tm_hour;
-
     if (temp == 1)
     {
-
-        // Print the appropriate greeting based on the hour
-        if (hour >= 5 && hour < 12)
-        {
-            char greetingMessage[] = "\t\t\t\t\t\tGood morning!";
-            speakText(greetingMessage);
-        }
-        else if (hour >= 12 && hour < 17)
-        {
-            char greetingMessage[] = "\t\t\t\t\t\tGood afternoon!";
-            speakText(greetingMessage);
-        }
-        else
-        {
-            char greetingMessage[] = "\t\t\t\t\t\tGood evening!";
-            speakText(greetingMessage);
-        }
-
         char welcomeMessage[] = "\t\t\t\t\t\tWelcome to the recipe app!";
         speakText(welcomeMessage);
     }
     setTextColor(14); // Yellow color
     typeText("\t\t\t\t\t\t#######################################\n", 10);
-    // typeText("\t\t\t\t\t\t#                                     #\n", 10);
-    if (hour >= 5 && hour < 12)
-    {
-        typeText("\t\t\t\t\t\t#            Good Morning             #\n", 10);
-    }
-    else if (hour >= 12 && hour < 17)
-    {
-        typeText("\t\t\t\t\t\t#            Good Afternoon           #\n", 10);
-    }
-    else
-    {
-        typeText("\t\t\t\t\t\t#            Good Evening             #\n", 10);
-    }
-
+    typeText("\t\t\t\t\t\t#                                     #\n", 10);
     typeText("\t\t\t\t\t\t#     WELCOME TO THE RECIPE APP!      #\n", 10);
     typeText("\t\t\t\t\t\t#                                     #\n", 10);
     typeText("\t\t\t\t\t\t#######################################\n\n", 10);
@@ -225,20 +186,16 @@ void displayExitArt()
 }
 
 // Function to draw a separator
-void drawSeparator(char symbol, int length)
-{
-    for (int i = 0; i < length; i++)
-    {
+void drawSeparator(char symbol, int length){
+    for (int i = 0; i < length; i++){
         putchar(symbol);
     }
     putchar('\n');
 }
 
 // Function to add a new recipe
-void addRecipe()
-{
-    if (recipe_count >= MAX_RECIPES)
-    {
+void addRecipe(){
+    if (recipe_count >= MAX_RECIPES){
         setTextColor(12); // Red color for error message
         char full[] = "\t\t\t\t\t\tRecipe storage is full!";
         typeText("Recipe storage is full!\n", 20);
@@ -279,8 +236,7 @@ void addRecipe()
     scanf("%d", &category_choice);
     clearInputBuffer();
 
-    switch (category_choice)
-    {
+    switch (category_choice){
     case 1:
         strcpy(newRecipe.category, "Breakfast");
         break;
@@ -308,10 +264,8 @@ void addRecipe()
 }
 
 // Function to display all recipes
-void displayRecipes()
-{
-    if (recipe_count == 0)
-    {
+void displayRecipes(){
+    if (recipe_count == 0){
         setTextColor(12);
         typeText("No recipes found. \n", 20);
         setTextColor(7);
@@ -322,8 +276,7 @@ void displayRecipes()
     speakText(display);
 
     printf("\n--- Predefined Recipes ---\n");
-    for (int i = 0; i < predefinedCount; i++)
-    {
+    for (int i = 0; i < predefinedCount; i++){
         printf("\nRecipe %d:\n", i + 1);
         printf("Name: %s\n", predefinedRecipes[i].name);
         printf("Ingredients: %s\n", predefinedRecipes[i].ingredients);
@@ -334,11 +287,10 @@ void displayRecipes()
         printf("----------------------------\n");
     }
 
-    if (recipe_count > 0)
-    {
+
+    if(recipe_count > 0){
         printf("\n--- User-Defined Recipes ---\n");
-        for (int i = 0; i < recipe_count; i++)
-        {
+        for (int i = 0; i < recipe_count; i++){
             printf("\nRecipe %d:\n", i + 1);
             drawSeparator('-', 30);
             printf("Name: %s\n", recipes[i].name);
@@ -349,15 +301,13 @@ void displayRecipes()
             drawSeparator('-', 30);
         }
     }
-    else
-    {
+    else{
         typeText("No user-defined recipes available.\n", 20);
     }
 }
 
 // Custom implementation of strcasestr for Windows
-char *strcasestr(const char *haystack, const char *needle)
-{
+char *strcasestr(const char *haystack, const char *needle){
     if (!haystack || !needle)
         return NULL;
 
@@ -374,8 +324,7 @@ char *strcasestr(const char *haystack, const char *needle)
 }
 
 // Case-insensitive string comparison for the first n characters
-int strncasecmp(const char *s1, const char *s2, size_t n)
-{
+int strncasecmp(const char *s1, const char *s2, size_t n){
     while (n-- && *s1 && *s2)
     {
         char c1 = tolower((unsigned char)*s1++);
@@ -387,8 +336,7 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 }
 
 // Function to search recipes by name or category
-void searchRecipe()
-{
+void searchRecipe(){
     int search_choice;
     typeText("Choose search option:\n", 20);
     typeText("1. Search by Name\n", 20);
@@ -397,18 +345,15 @@ void searchRecipe()
     scanf("%d", &search_choice);
     clearInputBuffer();
 
-    if (search_choice == 1) // Search by Name
-    {
+    if (search_choice == 1){ // Search by Name
         char searchName[MAX_NAME_LEN];
-        typeText("Enter the name or part of the name of the recipe to search: ", 20);
+        typeText("Enter the name or part of the ntextame of the recipe to search: ", 20);
         fgets(searchName, MAX_NAME_LEN, stdin);
         searchName[strcspn(searchName, "\n")] = 0;
 
         int found = 0;
-        for (int i = 0; i < recipe_count; i++)
-        {
-            if (strcasestr(recipes[i].name, searchName) != NULL) // Partial match
-            {
+        for (int i = 0; i < recipe_count; i++){
+            if (strcasestr(recipes[i].name, searchName) != NULL){ // Partial match
                 printf("\nRecipe found:\n");
                 drawSeparator('-', 30);
                 printf("Name: %s\n", recipes[i].name);
@@ -419,30 +364,15 @@ void searchRecipe()
                 drawSeparator('-', 30);
                 found = 1;
             }
-            else if (strcasestr(predefinedRecipes[i].name, searchName) != NULL) // Partial match
-            {
-                printf("\nRecipe found:\n");
-                drawSeparator('-', 30);
-                printf("Name: %s\n", predefinedRecipes[i].name);
-                printf("Ingredients: %s\n", predefinedRecipes[i].ingredients);
-                printf("Instructions: %s\n", predefinedRecipes[i].instructions);
-                printf("Preparation time: %d minutes\n", predefinedRecipes[i].prep_time);
-                printf("Category: %s\n", predefinedRecipes[i].category);
-                printf("YouTube Link: %s\n", predefinedRecipes[i].youtube_link);
-                drawSeparator('-', 30);
-                found = 1;
-            }
         }
 
-        if (!found)
-        {
+        if (!found){
             setTextColor(12);
             printf("No recipes found matching the name.\n");
             setTextColor(7);
         }
     }
-    else if (search_choice == 2) // Search by Category
-    {
+    else if (search_choice == 2){ // Search by Category
         int category_choice;
         typeText("\nChoose the category to search:\n", 20);
         typeText("1. Breakfast\n", 20);
@@ -454,8 +384,7 @@ void searchRecipe()
         clearInputBuffer();
 
         const char *category = NULL;
-        switch (category_choice)
-        {
+        switch (category_choice){
         case 1:
             category = "Breakfast";
             break;
@@ -471,13 +400,13 @@ void searchRecipe()
         default:
             setTextColor(12);
             printf("Invalid category choice.\n");
-            setTextColor(7);
+            setTextColor(13);
+            searchRecipe();
             return;
         }
 
         int found = 0;
-        for (int i = 0; i < recipe_count; i++)
-        {
+        for (int i = 0; i < recipe_count; i++){
             if (strcasecmp(recipes[i].category, category) == 0)
             {
                 printf("\nRecipe found:\n");
@@ -492,18 +421,17 @@ void searchRecipe()
             }
         }
 
-        if (!found)
-        {
+        if (!found){
             setTextColor(12);
             printf("No recipes found in the '%s' category.\n", category);
             setTextColor(7);
         }
     }
-    else
-    {
+    else{
         setTextColor(12);
-        printf("Invalid choice. Returning to the menu.\n");
-        setTextColor(7);
+        printf("Invalid choice, try again.\n");
+        setTextColor(13);
+        searchRecipe();
     }
 }
 
@@ -512,8 +440,7 @@ void searchRecipe()
 void saveRecipes()
 {
     FILE *file = fopen(filename, "wb");
-    if (!file)
-    {
+    if (!file){
         errorHandling("Failed to open file for writing.");
         return;
     }
@@ -526,11 +453,9 @@ void saveRecipes()
 }
 
 // Function to load recipes from a file
-void loadRecipes()
-{
+void loadRecipes(){
     FILE *file = fopen(filename, "rb");
-    if (!file)
-    {
+    if (!file){
         printf("No existing recipe file found. Starting fresh.\n");
         return;
     }
@@ -543,8 +468,7 @@ void loadRecipes()
 }
 
 // Error handling function
-void errorHandling(const char *message)
-{
+void errorHandling(const char *message){
     setTextColor(12); // Red color for error message
     printf("Error: %s\n", message);
     setTextColor(7); // Reset to default
@@ -552,15 +476,13 @@ void errorHandling(const char *message)
 }
 
 // Utility function to clear input buffer
-void clearInputBuffer()
-{
+void clearInputBuffer(){
     int c;
     while ((c = getchar()) != '\n' && c != EOF)
         ;
 }
 
-void speakText(char text[])
-{
+void speakText(char text[]){
     // char text[100];
     // printf("Enter the text you want to speak: ");
     // fgets(text, 100, stdin);
@@ -580,13 +502,8 @@ void speakText(char text[])
     system(command);
 }
 
-void displayRandomRecipe()
-{
-}
-
 // Main function
-int main()
-{
+int main(){
     // AudioData audio_data = {argv[1], true, false}; // Looping audio
 
     // // Start audio in a separate thread
@@ -598,7 +515,6 @@ int main()
     // }
     // WaitForSingleObject((HANDLE)audio_thread_handle, INFINITE);
     // CloseHandle((HANDLE)audio_thread_handle);
-
     loadRecipes();
     menu();
     return 0;

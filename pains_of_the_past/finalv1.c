@@ -19,7 +19,44 @@ typedef struct
     char instructions[MAX_INSTRUCTIONS_LEN];
     int prep_time;     // in minutes
     char category[20]; // Breakfast, Snacks, Lunch, or Dinner
+    char youtube_link[100];
 } Recipe;
+
+const Recipe predefinedRecipes[] = {
+    {
+        "Pancakes",
+        "Flour, Eggs, Milk, Baking Powder, Sugar",
+        "1. Mix ingredients.\n2. Heat pan and cook batter until golden brown.",
+        20,
+        "Breakfast",
+        "https://www.youtube.com/watch?v=pancakes"
+    },
+    {
+        "Grilled Cheese Sandwich",
+        "Bread, Cheese, Butter",
+        "1. Heat pan.\n2. Assemble sandwich.\n3. Grill until golden.",
+        10,
+        "Snacks",
+        "https://www.youtube.com/watch?v=grilledcheese"
+    },
+    {
+        "Spaghetti Bolognese",
+        "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic",
+        "1. Cook spaghetti.\n2. Prepare sauce.\n3. Mix and serve.",
+        40,
+        "Lunch",
+        "https://www.youtube.com/watch?v=spaghettibolognese"
+    },
+    {
+        "Chicken Curry",
+        "Chicken, Onion, Tomato, Spices, Cream",
+        "1. Saute onions and spices.\n2. Add chicken and cook.\n3. Add cream and simmer.",
+        45,
+        "Dinner",
+        "https://www.youtube.com/watch?v=chickencurry"
+    }
+};
+const int predefinedCount = sizeof(predefinedRecipes) / sizeof(predefinedRecipes[0]);
 
 // Function declarations
 void addRecipe();
@@ -127,7 +164,8 @@ void displayWelcomeArt()
     static int temp = 1;
     if (temp == 1)
     {
-        PlaySound("Welcome.wav", NULL, SND_FILENAME | SND_ASYNC);
+        char welcomeMessage[] = "\t\t\t\t\t\tWelcome to the recipe app!";
+        speakText(welcomeMessage);
     }
     setTextColor(14); // Yellow color
     typeText("\t\t\t\t\t\t#######################################\n", 10);
@@ -170,7 +208,9 @@ void addRecipe()
     if (recipe_count >= MAX_RECIPES)
     {
         setTextColor(12); // Red color for error message
+        char full[] = "\t\t\t\t\t\tRecipe storage is full!";
         typeText("Recipe storage is full!\n", 20);
+        speakText(full);
         setTextColor(7);
         return;
     }
@@ -194,6 +234,8 @@ void addRecipe()
     clearInputBuffer();
 
     // Category input
+    char categoryMsg[] = "\t\t\t\t\t\tChoose the category from below options!";
+    speakText(categoryMsg);
     typeText("\nChoose the category:\n", 20);
     typeText("1. Breakfast\n", 20);
     typeText("2. Snacks\n", 20);
@@ -227,7 +269,9 @@ void addRecipe()
     recipes[recipe_count++] = newRecipe;
 
     setTextColor(10);
+    char recipeAdded[] = "\t\t\t\t\t\tRecipe added successfully!";
     typeText("\nRecipe added successfully! \n", 20);
+    speakText(recipeAdded);
     setTextColor(7);
 }
 
@@ -245,6 +289,22 @@ void displayRecipes()
     char display[] = "Here are all the recipes!";
     speakText(display);
 
+    printf("\n--- Predefined Recipes ---\n");
+    for (int i = 0; i < predefinedCount; i++)
+    {
+        printf("\nRecipe %d:\n", i + 1);
+        printf("Name: %s\n", predefinedRecipes[i].name);
+        printf("Ingredients: %s\n", predefinedRecipes[i].ingredients);
+        printf("Instructions: %s\n", predefinedRecipes[i].instructions);
+        printf("Preparation Time: %d minutes\n", predefinedRecipes[i].prep_time);
+        printf("Category: %s\n", predefinedRecipes[i].category);
+        printf("YouTube Link: %s\n", predefinedRecipes[i].youtube_link);
+        printf("----------------------------\n");
+    }
+
+
+    if(recipe_count > 0){
+    printf("\n--- User-Defined Recipes ---\n");
     for (int i = 0; i < recipe_count; i++)
     {
         printf("\nRecipe %d:\n", i + 1);
@@ -255,6 +315,10 @@ void displayRecipes()
         printf("Preparation time: %d minutes\n", recipes[i].prep_time);
         printf("Category: %s\n", recipes[i].category); // Display the category
         drawSeparator('-', 30);
+    }
+    }
+    else{
+        typeText("No user-defined recipes available.\n", 20);
     }
 }
 
@@ -303,7 +367,7 @@ void searchRecipe()
     if (search_choice == 1) // Search by Name
     {
         char searchName[MAX_NAME_LEN];
-        typeText("Enter the name or part of the name of the recipe to search: ", 20);
+        typeText("Enter the name or part of the ntextame of the recipe to search: ", 20);
         fgets(searchName, MAX_NAME_LEN, stdin);
         searchName[strcspn(searchName, "\n")] = 0;
 

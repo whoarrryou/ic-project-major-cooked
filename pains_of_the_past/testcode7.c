@@ -360,7 +360,7 @@ void speakText(char text[])
 }
 
 // Main function
-int main(int argc, char *argv[])
+int main()
 {
     // AudioData audio_data = {argv[1], true, false}; // Looping audio
 

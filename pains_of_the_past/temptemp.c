@@ -4,7 +4,6 @@
 #include <windows.h>
 #include <stdbool.h>
 #include <process.h>
-// For colored text and system commands on Windows
 
 #define MAX_RECIPES 100
 #define MAX_NAME_LEN 50
@@ -18,32 +17,8 @@ typedef struct
     char ingredients[MAX_INGREDIENTS_LEN];
     char instructions[MAX_INSTRUCTIONS_LEN];
     int prep_time; // in minutes
+    char category[20]; // Breakfast, Snacks, Lunch, or Dinner
 } Recipe;
-
-// typedef struct
-// {
-//     const char *audio_file;
-//     bool loop;
-//     bool stop;
-// } AudioData;
-
-// unsigned __stdcall audio_thread(void *arg)
-// {
-//     AudioData *data = (AudioData *)arg;
-
-//     do
-//     {
-//         PlaySound(data->audio_file, NULL, SND_FILENAME | SND_ASYNC);
-//         while (!data->stop)
-//         {
-//             Sleep(100); // Check periodically if the audio should stop
-//         }
-//     } while (data->loop && !data->stop);
-
-//     // Stop playback when done
-//     PlaySound(NULL, NULL, 0);
-//     return 0;
-// }
 
 // Function declarations
 void addRecipe();
@@ -73,35 +48,35 @@ void menu()
 
     while (1)
     {
-        clearScreen();          // Clear screen before showing menu
-        displayWelcomeArt();    // Display fancy title
+        clearScreen();
+        displayWelcomeArt();
         printf("\t\t\t\t\t\t");
-        drawSeparator('=', 30); // Decorative separator
+        drawSeparator('=', 30);
         setTextColor(13);
         typeText("\n\t\t\t\t\t\t1. Add a Recipe\n", 20);
         typeText("\t\t\t\t\t\t2. Display All Recipes\n", 20);
         typeText("\t\t\t\t\t\t3. Search Recipe by Name\n", 20);
         typeText("\t\t\t\t\t\t4. Exit\n", 20);
         printf("\t\t\t\t\t\t");
-        drawSeparator('=', 30); // Decorative separator
+        drawSeparator('=', 30);
         typeText("Enter your choice: ", 20);
         char textMsg[] = "Enter your choice";
         speakText(textMsg);
         scanf("%d", &choice);
-        clearInputBuffer(); // Clear the buffer after taking user input
+        clearInputBuffer();
 
         switch (choice)
         {
         case 1:
-            clearScreen(); // Clear screen before adding a recipe
+            clearScreen();
             addRecipe();
             break;
         case 2:
-            clearScreen(); // Clear screen before displaying recipes
+            clearScreen();
             displayRecipes();
             break;
         case 3:
-            clearScreen(); // Clear screen before searching for recipes
+            clearScreen();
             searchRecipe();
             break;
         case 4:
@@ -117,7 +92,7 @@ void menu()
         typeText("\nPress Enter to return to the main menu...", 20);
         char returnMenu[] = "Press Enter to return to the main menu";
         speakText(returnMenu);
-        getchar(); // Pause before returning to the main menu
+        getchar();
     }
 }
 
@@ -194,7 +169,7 @@ void addRecipe()
     {
         setTextColor(12); // Red color for error message
         typeText("Recipe storage is full!\n", 20);
-        setTextColor(7); // Reset to default
+        setTextColor(7);
         return;
     }
 
@@ -202,7 +177,7 @@ void addRecipe()
 
     typeText("Enter recipe name: ", 20);
     fgets(newRecipe.name, MAX_NAME_LEN, stdin);
-    newRecipe.name[strcspn(newRecipe.name, "\n")] = 0; // Remove newline
+    newRecipe.name[strcspn(newRecipe.name, "\n")] = 0;
 
     typeText("Enter ingredients: ", 20);
     fgets(newRecipe.ingredients, MAX_INGREDIENTS_LEN, stdin);
@@ -216,11 +191,42 @@ void addRecipe()
     scanf("%d", &newRecipe.prep_time);
     clearInputBuffer();
 
+    // Category input
+    typeText("\nChoose the category:\n", 20);
+    typeText("1. Breakfast\n", 20);
+    typeText("2. Snacks\n", 20);
+    typeText("3. Lunch\n", 20);
+    typeText("4. Dinner\n", 20);
+    typeText("Enter your choice: ", 20);
+
+    int category_choice;
+    scanf("%d", &category_choice);
+    clearInputBuffer();
+
+    switch (category_choice)
+    {
+    case 1:
+        strcpy(newRecipe.category, "Breakfast");
+        break;
+    case 2:
+        strcpy(newRecipe.category, "Snacks");
+        break;
+    case 3:
+        strcpy(newRecipe.category, "Lunch");
+        break;
+    case 4:
+        strcpy(newRecipe.category, "Dinner");
+        break;
+    default:
+        strcpy(newRecipe.category, "Uncategorized");
+        typeText("Invalid category. Recipe added as 'Uncategorized'.\n", 20);
+    }
+
     recipes[recipe_count++] = newRecipe;
 
-    setTextColor(10); // Green color for success message
+    setTextColor(10);
     typeText("\nRecipe added successfully! ✅\n", 20);
-    setTextColor(7); // Reset to default
+    setTextColor(7);
 }
 
 // Function to display all recipes
@@ -228,44 +234,35 @@ void displayRecipes()
 {
     if (recipe_count == 0)
     {
-        setTextColor(12); // Red color for error message
+        setTextColor(12);
         typeText("No recipes found. \n", 20);
-        setTextColor(7); // Reset to default
+        setTextColor(7);
         return;
     }
-    // PlaySound("Display.wav", NULL, SND_FILENAME | SND_ASYNC);
+
     char display[] = "Here are all the recipes!";
     speakText(display);
 
     for (int i = 0; i < recipe_count; i++)
     {
         printf("\nRecipe %d:\n", i + 1);
-        drawSeparator('-', 30); // Decorative separator
-        // // char recipeName[] = recipes[i].name;
-        // // speakText(recipeName);
-        // // typeText("Name: ", 20);
-        // // typeText(recipeName, 20);
-        // typeText("\n",20);
+        drawSeparator('-', 30);
         printf("Name: %s\n", recipes[i].name);
         printf("Ingredients: %s\n", recipes[i].ingredients);
         printf("Instructions: %s\n", recipes[i].instructions);
         printf("Preparation time: %d minutes\n", recipes[i].prep_time);
-        drawSeparator('-', 30); // Decorative separator
+        printf("Category: %s\n", recipes[i].category); // Display the category
+        drawSeparator('-', 30);
     }
 }
-
-// The rest of the code (searchRecipe, saveRecipes, loadRecipes, errorHandling, etc.) remains unchanged.
 
 // Function to search recipes by name
 void searchRecipe()
 {
-    setTextColor(9);
-    char search[] = "Here you can search the recipe!";
-    speakText(search);
     char searchName[MAX_NAME_LEN];
     printf("Enter the name of the recipe to search: ");
     fgets(searchName, MAX_NAME_LEN, stdin);
-    searchName[strcspn(searchName, "\n")] = 0; // Remove newline
+    searchName[strcspn(searchName, "\n")] = 0;
 
     int found = 0;
     for (int i = 0; i < recipe_count; i++)
@@ -273,12 +270,13 @@ void searchRecipe()
         if (strcasecmp(recipes[i].name, searchName) == 0)
         {
             printf("\nRecipe found:\n");
-            drawSeparator('-', 30); // Decorative separator
+            drawSeparator('-', 30);
             printf("Name: %s\n", recipes[i].name);
             printf("Ingredients: %s\n", recipes[i].ingredients);
             printf("Instructions: %s\n", recipes[i].instructions);
             printf("Preparation time: %d minutes\n", recipes[i].prep_time);
-            drawSeparator('-', 30); // Decorative separator
+            printf("Category: %s\n", recipes[i].category); // Display the category
+            drawSeparator('-', 30);
             found = 1;
             break;
         }
@@ -286,12 +284,13 @@ void searchRecipe()
 
     if (!found)
     {
-        setTextColor(12); // Red color for error message
+        setTextColor(12);
         printf("Recipe not found. \n");
-        setTextColor(7); // Reset to default
+        setTextColor(7);
     }
 }
 
+// The rest of the functions remain unchanged.
 // Function to save recipes to a file
 void saveRecipes()
 {

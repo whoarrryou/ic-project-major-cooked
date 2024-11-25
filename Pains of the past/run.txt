@@ -1,1 +1,0 @@
-gcc testcode6.c -o testcode6 -lwinmm

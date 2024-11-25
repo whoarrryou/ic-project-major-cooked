@@ -30,329 +30,329 @@ const Recipe predefinedRecipes[] = {
      "1. Mix ingredients.\n2. Heat pan and cook batter until golden brown.",
      20,
      "Breakfast",
-     "https://www.youtube.com/watch?v=pancakes",
+     "https://www.youtube.com/results?search_query=pancakes",
      227},
     {"Grilled Cheese Sandwich",
      "Bread, Cheese, Butter",
      "1. Heat pan.\n2. Assemble sandwich.\n3. Grill until golden.",
      10,
      "Snacks",
-     "https://www.youtube.com/watch?v=grilledcheese",
+     "https://www.youtube.com/results?search_query=grilledcheese",
      378},
     {"Spaghetti Bolognese",
      "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic",
      "1. Cook spaghetti.\n2. Prepare sauce.\n3. Mix and serve.",
      40,
      "Lunch",
-     "https://www.youtube.com/watch?v=spaghettibolognese",
+     "https://www.youtube.com/results?search_query=spaghettibolognese",
      382},
     {"Chicken Curry",
      "Chicken, Onion, Tomato, Spices, Cream",
      "1. Saute onions and spices.\n2. Add chicken and cook.\n3. Add cream and simmer.",
      45,
      "Dinner",
-     "https://www.youtube.com/watch?v=chickencurry",
+     "https://www.youtube.com/results?search_query=chickencurry",
      550},
     {"Avocado Toast",
      "Bread, Avocado, Olive Oil, Lemon, Salt",
      "1. Toast bread.\n2. Mash avocado and spread on toast.\n3. Season and drizzle with olive oil.",
      5,
      "Breakfast",
-     "https://www.youtube.com/watch?v=avocadotoast",
+     "https://www.youtube.com/results?search_query=avocadotoast",
      200},
     {"French Toast",
      "Bread, Eggs, Milk, Sugar, Cinnamon",
      "1. Mix eggs, milk, sugar, and cinnamon.\n2. Dip bread and fry until golden.",
      15,
      "Breakfast",
-     "https://www.youtube.com/watch?v=frenchtoast",
+     "https://www.youtube.com/results?search_query=frenchtoast",
      250},
     {"Caesar Salad",
      "Lettuce, Croutons, Caesar Dressing, Parmesan, Chicken (optional)",
      "1. Toss ingredients together.\n2. Serve with dressing.",
      10,
      "Snacks",
-     "https://www.youtube.com/watch?v=caesarsalad",
+     "https://www.youtube.com/results?search_query=caesarsalad",
      350},
     {"Vegetable Stir Fry",
      "Bell Peppers, Broccoli, Carrot, Soy Sauce, Ginger, Garlic",
      "1. Heat oil.\n2. Stir fry vegetables with soy sauce and spices.",
      20,
      "Lunch",
-     "https://www.youtube.com/watch?v=stirfry",
+     "https://www.youtube.com/results?search_query=stirfry",
      300},
     {"Beef Steak",
      "Beef Steak, Salt, Pepper, Butter, Garlic, Herbs",
      "1. Season steak.\n2. Cook in skillet until desired doneness.\n3. Rest and serve.",
      25,
      "Dinner",
-     "https://www.youtube.com/watch?v=beefsteak",
+     "https://www.youtube.com/results?search_query=beefsteak",
      650},
     {"Fruit Smoothie",
      "Banana, Berries, Yogurt, Honey, Milk",
      "1. Blend all ingredients until smooth.\n2. Serve chilled.",
      5,
      "Snacks",
-     "https://www.youtube.com/watch?v=fruitsmoothie",
+     "https://www.youtube.com/results?search_query=fruitsmoothie",
      180},
     {"Miso Soup",
      "Miso Paste, Tofu, Seaweed, Green Onions, Dashi Broth",
      "1. Prepare dashi broth.\n2. Add miso paste, tofu, and seaweed.\n3. Heat gently and serve.",
      15,
      "Dinner",
-     "https://www.youtube.com/watch?v=misosoup",
+     "https://www.youtube.com/results?search_query=misosoup",
      90},
     {"Egg Fried Rice",
      "Rice, Eggs, Vegetables, Soy Sauce, Oil",
      "1. Cook and cool rice.\n2. Stir fry with eggs and vegetables.",
      20,
      "Lunch",
-     "https://www.youtube.com/watch?v=eggfriedrice",
+     "https://www.youtube.com/results?search_query=eggfriedrice",
      400},
     {"Tacos",
      "Tortillas, Ground Meat, Lettuce, Tomato, Cheese, Salsa",
      "1. Cook meat.\n2. Assemble tacos with toppings.\n3. Serve.",
      30,
      "Dinner",
-     "https://www.youtube.com/watch?v=tacos",
+     "https://www.youtube.com/results?search_query=tacos",
      500},
     {"Vegetable Soup",
      "Carrots, Celery, Onion, Potatoes, Broth, Herbs",
      "1. Sauté vegetables.\n2. Add broth and simmer.\n3. Blend (optional) and serve.",
      40,
      "Lunch",
-     "https://www.youtube.com/watch?v=vegetablesoup",
+     "https://www.youtube.com/results?search_query=vegetablesoup",
      150},
     {"Scrambled Eggs",
      "Eggs, Milk, Butter, Salt, Pepper",
      "1. Whisk eggs and milk.\n2. Cook in butter over low heat, stirring.",
      10,
      "Breakfast",
-     "https://www.youtube.com/watch?v=scrambledeggs",
+     "https://www.youtube.com/results?search_query=scrambledeggs",
      200},
     {"Chicken Sandwich",
      "Chicken, Bread, Lettuce, Mayo, Tomato",
      "1. Grill chicken.\n2. Assemble sandwich with ingredients.",
      15,
      "Snacks",
-     "https://www.youtube.com/watch?v=chickensandwich",
+     "https://www.youtube.com/results?search_query=chickensandwich",
      320},
     {"Chocolate Brownie",
      "Butter, Sugar, Cocoa Powder, Flour, Eggs",
      "1. Mix ingredients.\n2. Bake at 350°F for 25 minutes.",
      40,
      "Snacks",
-     "https://www.youtube.com/watch?v=chocolatebrownie",
+     "https://www.youtube.com/results?search_query=chocolatebrownie",
      450},
     {"Pizza",
      "Pizza Dough, Tomato Sauce, Cheese, Toppings",
      "1. Spread sauce and toppings on dough.\n2. Bake at 400°F until crispy.",
      30,
      "Dinner",
-     "https://www.youtube.com/watch?v=pizza",
+     "https://www.youtube.com/results?search_query=pizza",
      700},
     {"Pasta Primavera",
      "Pasta, Vegetables, Olive Oil, Parmesan, Garlic",
      "1. Cook pasta.\n2. Sauté vegetables and mix with pasta.",
      25,
      "Lunch",
-     "https://www.youtube.com/watch?v=pastaprimavera",
+     "https://www.youtube.com/results?search_query=pastaprimavera",
      360},
     {"Cupcakes",
      "Flour, Sugar, Butter, Eggs, Milk, Frosting",
      "1. Prepare batter.\n2. Bake and decorate with frosting.",
      45,
      "Snacks",
-     "https://www.youtube.com/watch?v=cupcakes",
+     "https://www.youtube.com/results?search_query=cupcakes",
      350},
     {"Chicken Alfredo",
      "Chicken, Pasta, Cream, Parmesan, Garlic",
      "1. Cook pasta.\n2. Prepare Alfredo sauce and mix with chicken.",
      35,
      "Dinner",
-     "https://www.youtube.com/watch?v=chickenalfredo",
+     "https://www.youtube.com/results?search_query=chickenalfredo",
      650},
     {"Greek Salad",
      "Tomato, Cucumber, Onion, Feta, Olives, Dressing",
      "1. Chop vegetables.\n2. Toss with dressing and feta.",
      15,
      "Lunch",
-     "https://www.youtube.com/watch?v=greeksalad",
+     "https://www.youtube.com/results?search_query=greeksalad",
      250},
     {"Omelette",
      "Eggs, Onion, Bell Peppers, Cheese, Salt",
      "1. Whisk eggs.\n2. Cook in skillet with fillings.",
      10,
      "Breakfast",
-     "https://www.youtube.com/watch?v=omelette",
+     "https://www.youtube.com/results?search_query=omelette",
      210},
     {"Cheesecake",
      "Cream Cheese, Sugar, Eggs, Graham Cracker Crust",
      "1. Prepare crust.\n2. Mix and bake cheesecake filling.",
      60,
      "Snacks",
-     "https://www.youtube.com/watch?v=cheesecake",
+     "https://www.youtube.com/results?search_query=cheesecake",
      420},
     {"Masala Dosa",
      "Rice, Urad Dal, Potato, Spices, Curry Leaves",
      "1. Prepare dosa batter.\n2. Cook dosa on a pan.\n3. Add spiced potato filling and serve.",
      45,
      "Breakfast",
-     "https://www.youtube.com/watch?v=masaladosa",
+     "https://www.youtube.com/results?search_query=masaladosa",
      206},
     {"Palak Paneer",
      "Spinach, Paneer, Onion, Tomato, Spices, Cream",
      "1. Blanch spinach.\n2. Prepare masala base.\n3. Add paneer and cream.",
      40,
      "Lunch",
-     "https://www.youtube.com/watch?v=palakpaneer",
+     "https://www.youtube.com/results?search_query=palakpaneer",
      250},
     {"Aloo Paratha",
      "Wheat Flour, Potato, Spices, Ghee",
      "1. Knead dough.\n2. Prepare spiced potato filling.\n3. Roll and cook parathas.",
      30,
      "Breakfast",
-     "https://www.youtube.com/watch?v=alooparatha",
+     "https://www.youtube.com/results?search_query=alooparatha",
      300},
     {"Chole Bhature",
      "Chickpeas, Flour, Yogurt, Spices",
      "1. Prepare spiced chole curry.\n2. Make and fry bhature.",
      50,
      "Lunch",
-     "https://www.youtube.com/watch?v=cholebhature",
+     "https://www.youtube.com/results?search_query=cholebhature",
      450},
     {"Samosa",
      "Potato, Peas, Flour, Spices, Oil",
      "1. Prepare dough.\n2. Make spiced potato filling.\n3. Shape and fry samosas.",
      45,
      "Snacks",
-     "https://www.youtube.com/watch?v=samosa",
+     "https://www.youtube.com/results?search_query=samosa",
      280},
     {"Paneer Butter Masala",
      "Paneer, Butter, Tomato, Cashew, Cream, Spices",
      "1. Prepare creamy tomato gravy.\n2. Add paneer and simmer.",
      35,
      "Dinner",
-     "https://www.youtube.com/watch?v=paneerbuttermasala",
+     "https://www.youtube.com/results?search_query=paneerbuttermasala",
      320},
     {"Hyderabadi Biryani",
      "Rice, Chicken, Yogurt, Spices, Saffron",
      "1. Marinate chicken.\n2. Layer rice and chicken.\n3. Cook on low heat.",
      90,
      "Dinner",
-     "https://www.youtube.com/watch?v=hyderabadibiryani",
+     "https://www.youtube.com/results?search_query=hyderabadibiryani",
      500},
     {"Idli with Sambhar",
      "Rice, Urad Dal, Vegetables, Spices",
      "1. Prepare idli batter and steam.\n2. Cook sambhar with vegetables and spices.",
      50,
      "Breakfast",
-     "https://www.youtube.com/watch?v=idliandsambhar",
+     "https://www.youtube.com/results?search_query=idliandsambhar",
      190},
     {"Pav Bhaji",
      "Pav Bread, Potatoes, Tomatoes, Butter, Spices",
      "1. Prepare spicy vegetable mash.\n2. Toast pav with butter and serve.",
      40,
      "Snacks",
-     "https://www.youtube.com/watch?v=pavbhaji",
+     "https://www.youtube.com/results?search_query=pavbhaji",
      300},
     {"Rajma Chawal",
      "Kidney Beans, Rice, Tomato, Onion, Spices",
      "1. Cook rajma in spiced tomato gravy.\n2. Serve with steamed rice.",
      60,
      "Lunch",
-     "https://www.youtube.com/watch?v=rajmachawal",
+     "https://www.youtube.com/results?search_query=rajmachawal",
      350},
     {"Dhokla",
      "Gram Flour, Yogurt, Spices, Mustard Seeds",
      "1. Prepare batter.\n2. Steam until fluffy.\n3. Garnish with mustard seeds.",
      30,
      "Snacks",
-     "https://www.youtube.com/watch?v=dhokla",
+     "https://www.youtube.com/results?search_query=dhokla",
      150},
     {"Malai Kofta",
      "Paneer, Potato, Cream, Spices, Tomato",
      "1. Make kofta balls.\n2. Prepare creamy gravy.\n3. Simmer kofta in gravy.",
      50,
      "Dinner",
-     "https://www.youtube.com/watch?v=malaikofta",
+     "https://www.youtube.com/results?search_query=malaikofta",
      400},
     {"Chicken Tikka",
      "Chicken, Yogurt, Spices, Lemon",
      "1. Marinate chicken.\n2. Grill until cooked.",
      30,
      "Snacks",
-     "https://www.youtube.com/watch?v=chickentikka",
+     "https://www.youtube.com/results?search_query=chickentikka",
      320},
     {"Baingan Bharta",
      "Eggplant, Tomato, Onion, Spices",
      "1. Roast eggplant.\n2. Mash and cook with spices.",
      40,
      "Dinner",
-     "https://www.youtube.com/watch?v=bainganbharta",
+     "https://www.youtube.com/results?search_query=bainganbharta",
      200},
     {"Matar Paneer",
      "Paneer, Peas, Tomato, Onion, Spices",
      "1. Prepare spiced tomato gravy.\n2. Add peas and paneer.",
      30,
      "Lunch",
-     "https://www.youtube.com/watch?v=matarpaneer",
+     "https://www.youtube.com/results?search_query=matarpaneer",
      280},
     {"Dosa with Coconut Chutney",
      "Rice, Urad Dal, Coconut, Spices",
      "1. Prepare dosa batter and cook.\n2. Serve with fresh coconut chutney.",
      40,
      "Breakfast",
-     "https://www.youtube.com/watch?v=dosawithchutney",
+     "https://www.youtube.com/results?search_query=dosawithchutney",
      230},
     {"Butter Chicken",
      "Chicken, Butter, Cream, Tomato, Spices",
      "1. Cook spiced chicken.\n2. Prepare creamy tomato gravy.\n3. Simmer together.",
      60,
      "Dinner",
-     "https://www.youtube.com/watch?v=butterchicken",
+     "https://www.youtube.com/results?search_query=butterchicken",
      490},
     {"Rasgulla",
      "Milk, Lemon, Sugar",
      "1. Prepare chhena.\n2. Shape and cook in sugar syrup.",
      45,
      "Snacks",
-     "https://www.youtube.com/watch?v=rasgulla",
+     "https://www.youtube.com/results?search_query=rasgulla",
      150},
     {"Kheer",
      "Rice, Milk, Sugar, Cardamom, Nuts",
      "1. Cook rice in milk.\n2. Add sugar and cardamom.\n3. Garnish with nuts.",
      40,
      "Snacks",
-     "https://www.youtube.com/watch?v=kheer",
+     "https://www.youtube.com/results?search_query=kheer",
      210},
     {"Gulab Jamun",
      "Milk Powder, Flour, Sugar, Ghee",
      "1. Prepare dough.\n2. Fry and soak in sugar syrup.",
      50,
      "Snacks",
-     "https://www.youtube.com/watch?v=gulabjamun",
+     "https://www.youtube.com/results?search_query=gulabjamun",
      280},
     {"Tandoori Roti",
      "Wheat Flour, Yogurt, Spices",
      "1. Knead dough.\n2. Cook in tandoor or hot pan.",
      20,
      "Dinner",
-     "https://www.youtube.com/watch?v=tandooriroti",
+     "https://www.youtube.com/results?search_query=tandooriroti",
      150},
     {"Bhel Puri",
      "Puffed Rice, Vegetables, Tamarind Chutney, Spices",
      "1. Mix all ingredients.\n2. Serve immediately.",
      10,
      "Snacks",
-     "https://www.youtube.com/watch?v=bhelpuri",
+     "https://www.youtube.com/results?search_query=bhelpuri",
      120},
     {"Pongal",
      "Rice, Moong Dal, Ghee, Pepper, Cumin",
      "1. Cook rice and dal.\n2. Temper spices and mix.",
      30,
      "Breakfast",
-     "https://www.youtube.com/watch?v=pongal",
+     "https://www.youtube.com/results?search_query=pongal",
      190}
     // Add additional recipes here if needed...
 };
@@ -389,15 +389,15 @@ void menu()
     {
         clearScreen();
         displayWelcomeArt();
-        printf("\t\t\t\t\t\t");
+        printf("\t\t\t\t\t\t\t\t");
         drawSeparator('=', 39);
         setTextColor(13);
-        typeText("\n\t\t\t\t\t\t1. Add a Recipe\n", 10);
-        typeText("\t\t\t\t\t\t2. Display All Recipes\n", 10);
-        typeText("\t\t\t\t\t\t3. Search Recipe by Name\n", 10);
-        typeText("\t\t\t\t\t\t4. Display a Random Recipe\n", 10);
-        typeText("\t\t\t\t\t\t5. Exit\n", 10);
-        printf("\t\t\t\t\t\t");
+        typeText("\n\t\t\t\t\t\t\t\t1. Add a Recipe\n", 10);
+        typeText("\t\t\t\t\t\t\t\t2. Display All Recipes\n", 10);
+        typeText("\t\t\t\t\t\t\t\t3. Search Recipe by Name\n", 10);
+        typeText("\t\t\t\t\t\t\t\t4. Display a Random Recipe\n", 10);
+        typeText("\t\t\t\t\t\t\t\t5. Exit\n", 10);
+        printf("\t\t\t\t\t\t\t\t");
         drawSeparator('=', 39);
         typeText("Enter your choice: ", 10);
         char textMsg[] = "Enter your choice";
@@ -482,42 +482,42 @@ void displayWelcomeArt()
         // Print the appropriate greeting based on the hour
         if (hour >= 5 && hour < 12)
         {
-            char greetingMessage[] = "\t\t\t\t\t\tGood morning!";
+            char greetingMessage[] = "\t\t\t\t\t\t\t\tGood morning!";
             speakText(greetingMessage);
         }
         else if (hour >= 12 && hour < 17)
         {
-            char greetingMessage[] = "\t\t\t\t\t\tGood afternoon!";
+            char greetingMessage[] = "\t\t\t\t\t\t\t\tGood afternoon!";
             speakText(greetingMessage);
         }
         else
         {
-            char greetingMessage[] = "\t\t\t\t\t\tGood evening!";
+            char greetingMessage[] = "\t\t\t\t\t\t\t\tGood evening!";
             speakText(greetingMessage);
         }
 
-        char welcomeMessage[] = "\t\t\t\t\t\tWelcome to the recipe app!";
+        char welcomeMessage[] = "\t\t\t\t\t\t\t\tWelcome to the recipe app!";
         speakText(welcomeMessage);
     }
     setTextColor(14); // Yellow color
-    typeText("\t\t\t\t\t\t#######################################\n", 10);
-    // typeText("\t\t\t\t\t\t#                                     #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#######################################\n", 10);
+    // typeText("\t\t\t\t\t#                                     #\n", 10);
     if (hour >= 5 && hour < 12)
     {
-        typeText("\t\t\t\t\t\t#            Good Morning             #\n", 10);
+        typeText("\t\t\t\t\t\t\t\t#            Good Morning             #\n", 10);
     }
     else if (hour >= 12 && hour < 17)
     {
-        typeText("\t\t\t\t\t\t#            Good Afternoon           #\n", 10);
+        typeText("\t\t\t\t\t\t\t\t#            Good Afternoon           #\n", 10);
     }
     else
     {
-        typeText("\t\t\t\t\t\t#            Good Evening             #\n", 10);
+        typeText("\t\t\t\t\t\t\t\t#            Good Evening             #\n", 10);
     }
 
-    typeText("\t\t\t\t\t\t#     WELCOME TO THE RECIPE APP!      #\n", 10);
-    typeText("\t\t\t\t\t\t#                                     #\n", 10);
-    typeText("\t\t\t\t\t\t#######################################\n\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#     WELCOME TO THE RECIPE APP!      #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#                                     #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#######################################\n\n", 10);
     setTextColor(7); // Reset to default color
     temp = 0;
 }
@@ -526,14 +526,14 @@ void displayWelcomeArt()
 void displayExitArt()
 {
     setTextColor(10); // Green color
-    char seeYa[] = "\t\t\t\t\t\tThank you for using the recipe storing app! See you next time";
-    typeText("\n\t\t\t\t\t\tThank you for using the Recipe Storing App! \n", 10);
+    char seeYa[] = "\t\t\t\t\t\t\t\tThank you for using the recipe storing app! See you next time";
+    typeText("\n\t\t\t\t\t\t\t\tThank you for using the Recipe Storing App! \n", 10);
     speakText(seeYa);
-    typeText("\t\t\t\t\t\t#######################################\n", 10);
-    typeText("\t\t\t\t\t\t#                                     #\n", 10);
-    typeText("\t\t\t\t\t\t#         SEE YOU NEXT TIME!          #\n", 10);
-    typeText("\t\t\t\t\t\t#                                     #\n", 10);
-    typeText("\t\t\t\t\t\t#######################################\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#######################################\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#                                     #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#         SEE YOU NEXT TIME!          #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#                                     #\n", 10);
+    typeText("\t\t\t\t\t\t\t\t#######################################\n", 10);
     setTextColor(7); // Reset to default color
 }
 
@@ -553,7 +553,7 @@ void addRecipe()
     if (recipe_count >= MAX_RECIPES)
     {
         setTextColor(12); // Red color for error message
-        char full[] = "\t\t\t\t\t\tRecipe storage is full!";
+        char full[] = "\t\t\t\t\t\t\t\tRecipe storage is full!";
         typeText("Recipe storage is full!\n", 20);
         speakText(full);
         setTextColor(7);
@@ -583,7 +583,7 @@ void addRecipe()
     clearInputBuffer();
 
     // Category input
-    char categoryMsg[] = "\t\t\t\t\t\tChoose the category from below options!";
+    char categoryMsg[] = "\t\t\t\t\t\t\t\tChoose the category from below options!";
     speakText(categoryMsg);
     typeText("\nChoose the category:\n", 20);
     typeText("1. Breakfast\n", 20);
@@ -618,7 +618,7 @@ void addRecipe()
     recipes[recipe_count++] = newRecipe;
 
     setTextColor(10);
-    char recipeAdded[] = "\t\t\t\t\t\tRecipe added successfully!";
+    char recipeAdded[] = "\t\t\t\t\t\t\t\tRecipe added successfully!";
     typeText("\nRecipe added successfully! \n", 20);
     speakText(recipeAdded);
     setTextColor(7);
@@ -705,6 +705,25 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
     return 0;
 }
 
+// Helper function to check if a word is found as a whole in a string
+bool isWholeWordMatch(const char *haystack, const char *needle)
+{
+    const char *pos = strcasestr(haystack, needle);
+    while (pos != NULL)
+    {
+        // Check if the character before and after the match are word boundaries
+        bool before_is_boundary = (pos == haystack) || isspace(*(pos - 1)) || ispunct(*(pos - 1));
+        bool after_is_boundary = (*(pos + strlen(needle)) == '\0') || isspace(*(pos + strlen(needle))) || ispunct(*(pos + strlen(needle)));
+
+        if (before_is_boundary && after_is_boundary)
+        {
+            return true;
+        }
+        pos = strcasestr(pos + 1, needle);
+    }
+    return false;
+}
+
 // Function to search recipes by name or category
 void searchRecipe()
 {
@@ -726,7 +745,7 @@ void searchRecipe()
         int found = 0;
         for (int i = 0; i < MAX_RECIPES; i++)
         {
-            if (strcasestr(recipes[i].name, searchName) != NULL)
+            if (isWholeWordMatch(recipes[i].name, searchName))
             { // Partial match
                 printf("\nRecipe found:\n");
                 drawSeparator('-', 30);
@@ -739,7 +758,7 @@ void searchRecipe()
                 drawSeparator('-', 30);
                 found = 1;
             }
-            if (strcasestr(predefinedRecipes[i].name, searchName) != NULL)
+            if (isWholeWordMatch(predefinedRecipes[i].name, searchName))
             { // Partial match
                 printf("\nRecipe found:\n");
                 drawSeparator('-', 30);

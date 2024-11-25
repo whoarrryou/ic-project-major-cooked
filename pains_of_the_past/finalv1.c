@@ -87,7 +87,8 @@ void menu()
         typeText("\n\t\t\t\t\t\t1. Add a Recipe\n", 10);
         typeText("\t\t\t\t\t\t2. Display All Recipes\n", 10);
         typeText("\t\t\t\t\t\t3. Search Recipe by Name\n", 10);
-        typeText("\t\t\t\t\t\t4. Exit\n", 10);
+        typeText("\t\t\t\t\t\t4. Display a Random Recipe\n", 10);
+        typeText("\t\t\t\t\t\t5. Exit\n", 10);
         printf("\t\t\t\t\t\t");
         drawSeparator('=', 39);
         typeText("Enter your choice: ", 10);
@@ -111,6 +112,10 @@ void menu()
             searchRecipe();
             break;
         case 4:
+            clearScreen();
+            displayRandomRecipe();
+            break;
+        case 5:
             saveRecipes();
             clearScreen();
             displayExitArt();
@@ -582,11 +587,53 @@ void speakText(char text[])
 
 void displayRandomRecipe()
 {
+    if (recipe_count == 0 && predefinedCount == 0)
+    {
+        setTextColor(12);
+        typeText("No recipes available.\n", 20);
+        setTextColor(7);
+        return;
+    }
+
+    // Seed the random number generator
+    srand(time(NULL));
+
+    // Randomly choose from the predefined recipes or the user-defined recipes
+    int totalRecipes = predefinedCount + recipe_count;
+    int randomIndex = rand() % totalRecipes;
+
+    Recipe selectedRecipe;
+    if (randomIndex < predefinedCount)
+    {
+        // Select from predefined recipes
+        selectedRecipe = predefinedRecipes[randomIndex];
+    }
+    else
+    {
+        // Select from user-defined recipes
+        selectedRecipe = recipes[randomIndex - predefinedCount];
+    }
+
+    // Display the selected recipe in the same format as in displayRecipes
+    printf("\n--- Random Recipe ---\n");
+    drawSeparator('-', 30);
+    printf("Name: %s\n", selectedRecipe.name);
+    printf("Ingredients: %s\n", selectedRecipe.ingredients);
+    printf("Instructions: %s\n", selectedRecipe.instructions);
+    printf("Preparation time: %d minutes\n", selectedRecipe.prep_time);
+    printf("Category: %s\n", selectedRecipe.category);
+
+    if (randomIndex < predefinedCount) {
+        printf("YouTube Link: %s\n", selectedRecipe.youtube_link);
+    }
+
+    drawSeparator('-', 30);
 }
 
 // Main function
 int main()
 {
+    srand(time(NULL));
     // AudioData audio_data = {argv[1], true, false}; // Looping audio
 
     // // Start audio in a separate thread

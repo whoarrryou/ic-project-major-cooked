@@ -21,6 +21,7 @@ typedef struct
     int prep_time;     // in minutes
     char category[20]; // Breakfast, Snacks, Lunch, or Dinner
     char youtube_link[100];
+    int calories;
 } Recipe;
 
 const Recipe predefinedRecipes[] = {
@@ -29,25 +30,25 @@ const Recipe predefinedRecipes[] = {
      "1. Mix ingredients.\n2. Heat pan and cook batter until golden brown.",
      20,
      "Breakfast",
-     "https://www.youtube.com/watch?v=pancakes"},
+     "https://www.youtube.com/watch?v=pancakes",227},
     {"Grilled Cheese Sandwich",
      "Bread, Cheese, Butter",
      "1. Heat pan.\n2. Assemble sandwich.\n3. Grill until golden.",
      10,
      "Snacks",
-     "https://www.youtube.com/watch?v=grilledcheese"},
+     "https://www.youtube.com/watch?v=grilledcheese",378},
     {"Spaghetti Bolognese",
      "Spaghetti, Ground Beef, Tomato Sauce, Onion, Garlic",
      "1. Cook spaghetti.\n2. Prepare sauce.\n3. Mix and serve.",
      40,
      "Lunch",
-     "https://www.youtube.com/watch?v=spaghettibolognese"},
+     "https://www.youtube.com/watch?v=spaghettibolognese",382},
     {"Chicken Curry",
      "Chicken, Onion, Tomato, Spices, Cream",
      "1. Saute onions and spices.\n2. Add chicken and cook.\n3. Add cream and simmer.",
      45,
      "Dinner",
-     "https://www.youtube.com/watch?v=chickencurry"}};
+     "https://www.youtube.com/watch?v=chickencurry",110}};
 const int predefinedCount = sizeof(predefinedRecipes) / sizeof(predefinedRecipes[0]);
 
 // Function declarations
@@ -270,6 +271,10 @@ void addRecipe()
     scanf("%d", &newRecipe.prep_time);
     clearInputBuffer();
 
+    typeText("Enter number of calories: ", 20);
+    scanf("%d", &newRecipe.calories);
+    clearInputBuffer();
+
     // Category input
     char categoryMsg[] = "\t\t\t\t\t\tChoose the category from below options!";
     speakText(categoryMsg);
@@ -335,6 +340,7 @@ void displayRecipes()
         printf("Instructions: %s\n", predefinedRecipes[i].instructions);
         printf("Preparation Time: %d minutes\n", predefinedRecipes[i].prep_time);
         printf("Category: %s\n", predefinedRecipes[i].category);
+        printf("Calories: %d\n", predefinedRecipes[i].calories);
         printf("YouTube Link: %s\n", predefinedRecipes[i].youtube_link);
         printf("----------------------------\n");
     }
@@ -351,6 +357,7 @@ void displayRecipes()
             printf("Instructions: %s\n", recipes[i].instructions);
             printf("Preparation time: %d minutes\n", recipes[i].prep_time);
             printf("Category: %s\n", recipes[i].category); // Display the category
+            printf("Calories: %d\n", recipes[i].calories);
             drawSeparator('-', 30);
         }
     }
@@ -392,7 +399,8 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 }
 
 // Function to search recipes by name or category
-void searchRecipe(){
+void searchRecipe()
+{
     int search_choice;
     typeText("Choose search option:\n", 20);
     typeText("1. Search by Name\n", 20);
@@ -401,15 +409,18 @@ void searchRecipe(){
     scanf("%d", &search_choice);
     clearInputBuffer();
 
-    if (search_choice == 1){ // Search by Name
+    if (search_choice == 1)
+    { // Search by Name
         char searchName[MAX_NAME_LEN];
         typeText("Enter the name or part of the ntextame of the recipe to search: ", 20);
         fgets(searchName, MAX_NAME_LEN, stdin);
         searchName[strcspn(searchName, "\n")] = 0;
 
         int found = 0;
-        for (int i = 0; i < recipe_count; i++){
-            if (strcasestr(recipes[i].name, searchName) != NULL){ // Partial match
+        for (int i = 0; i < recipe_count; i++)
+        {
+            if (strcasestr(recipes[i].name, searchName) != NULL)
+            { // Partial match
                 printf("\nRecipe found:\n");
                 drawSeparator('-', 30);
                 printf("Name: %s\n", recipes[i].name);
@@ -417,18 +428,35 @@ void searchRecipe(){
                 printf("Instructions: %s\n", recipes[i].instructions);
                 printf("Preparation time: %d minutes\n", recipes[i].prep_time);
                 printf("Category: %s\n", recipes[i].category);
+                printf("Calories: %d\n", recipes[i].calories);
+                drawSeparator('-', 30);
+                found = 1;
+            }
+            else if (strcasestr(predefinedRecipes[i].name, searchName) != NULL)
+            { // Partial match
+                printf("\nRecipe found:\n");
+                drawSeparator('-', 30);
+                printf("Name: %s\n", predefinedRecipes[i].name);
+                printf("Ingredients: %s\n", predefinedRecipes[i].ingredients);
+                printf("Instructions: %s\n", predefinedRecipes[i].instructions);
+                printf("Preparation time: %d minutes\n", predefinedRecipes[i].prep_time);
+                printf("Category: %s\n", predefinedRecipes[i].category);
+                printf("Calories: %d\n", predefinedRecipes[i].calories);
+                printf("YouTube Link: %s\n", predefinedRecipes[i].youtube_link);
                 drawSeparator('-', 30);
                 found = 1;
             }
         }
 
-        if (!found){
+        if (!found)
+        {
             setTextColor(12);
             printf("No recipes found matching the name.\n");
             setTextColor(7);
         }
     }
-    else if (search_choice == 2){ // Search by Category
+    else if (search_choice == 2)
+    { // Search by Category
         int category_choice;
         typeText("\nChoose the category to search:\n", 20);
         typeText("1. Breakfast\n", 20);
@@ -440,7 +468,8 @@ void searchRecipe(){
         clearInputBuffer();
 
         const char *category = NULL;
-        switch (category_choice){
+        switch (category_choice)
+        {
         case 1:
             category = "Breakfast";
             break;
@@ -463,7 +492,8 @@ void searchRecipe(){
         }
 
         int found = 0;
-        for (int i = 0; i < recipe_count; i++){
+        for (int i = 0; i < recipe_count; i++)
+        {
             if (strcasecmp(recipes[i].category, category) == 0)
             {
                 printf("\nRecipe found:\n");
@@ -473,18 +503,35 @@ void searchRecipe(){
                 printf("Instructions: %s\n", recipes[i].instructions);
                 printf("Preparation time: %d minutes\n", recipes[i].prep_time);
                 printf("Category: %s\n", recipes[i].category);
+                printf("Calories: %d\n", recipes[i].calories);
+                drawSeparator('-', 30);
+                found = 1;
+            }
+            else if (strcasecmp(predefinedRecipes[i].category, category) == 0)
+            {
+                printf("\nRecipe found:\n");
+                drawSeparator('-', 30);
+                printf("Name: %s\n", predefinedRecipes[i].name);
+                printf("Ingredients: %s\n", predefinedRecipes[i].ingredients);
+                printf("Instructions: %s\n", predefinedRecipes[i].instructions);
+                printf("Preparation time: %d minutes\n", predefinedRecipes[i].prep_time);
+                printf("Category: %s\n", predefinedRecipes[i].category);
+                printf("Calories: %d\n", predefinedRecipes[i].calories);
+                printf("YouTube Link: %s\n", predefinedRecipes[i].youtube_link);
                 drawSeparator('-', 30);
                 found = 1;
             }
         }
 
-        if (!found){
+        if (!found)
+        {
             setTextColor(12);
             printf("No recipes found in the '%s' category.\n", category);
             setTextColor(7);
         }
     }
-    else{
+    else
+    {
         setTextColor(12);
         clearScreen();
         printf("Invalid choice, try again.\n");
@@ -602,8 +649,10 @@ void displayRandomRecipe()
     printf("Instructions: %s\n", selectedRecipe.instructions);
     printf("Preparation time: %d minutes\n", selectedRecipe.prep_time);
     printf("Category: %s\n", selectedRecipe.category);
+    printf("Calories: %d\n", selectedRecipe.calories);
 
-    if (randomIndex < predefinedCount) {
+    if (randomIndex < predefinedCount)
+    {
         printf("YouTube Link: %s\n", selectedRecipe.youtube_link);
     }
 

@@ -19,7 +19,7 @@ typedef struct
     char instructions[MAX_INSTRUCTIONS_LEN];
     int prep_time; // in minutes
 } Recipe;
- 
+
 // typedef struct
 // {
 //     const char *audio_file;
@@ -149,7 +149,8 @@ void displayWelcomeArt()
     static int temp = 1;
     if (temp == 1)
     {
-        PlaySound("Welcome.wav", NULL, SND_FILENAME | SND_ASYNC);
+        char Welcome[] = "Welcome to the recipe app!";
+        speakText(Welcome);
     }
     setTextColor(14); // Yellow color
     typeText("#######################################\n", 10);
@@ -232,7 +233,10 @@ void displayRecipes()
         setTextColor(7); // Reset to default
         return;
     }
-    PlaySound("Display.wav", NULL, SND_FILENAME | SND_ASYNC);
+    // PlaySound("Display.wav", NULL, SND_FILENAME | SND_ASYNC);
+    char display[] = "Here are all the recipes!";
+    speakText(display);
+
     for (int i = 0; i < recipe_count; i++)
     {
         printf("\nRecipe %d:\n", i + 1);
@@ -256,7 +260,8 @@ void displayRecipes()
 void searchRecipe()
 {
     setTextColor(9);
-    PlaySound("Search.wav", NULL, SND_FILENAME | SND_ASYNC);
+    char search[] = "Here you can search the recipe!";
+    speakText(search);
     char searchName[MAX_NAME_LEN];
     printf("Enter the name of the recipe to search: ");
     fgets(searchName, MAX_NAME_LEN, stdin);

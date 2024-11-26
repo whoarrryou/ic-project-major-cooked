@@ -394,7 +394,7 @@ void menu()
         setTextColor(13);
         typeText("\n\t\t\t\t\t\t\t\t1. Add a Recipe\n", 10);
         typeText("\t\t\t\t\t\t\t\t2. Display All Recipes\n", 10);
-        typeText("\t\t\t\t\t\t\t\t3. Search Recipe by Name\n", 10);
+        typeText("\t\t\t\t\t\t\t\t3. Search Recipe by Name or Category\n", 10);
         typeText("\t\t\t\t\t\t\t\t4. Display a Random Recipe\n", 10);
         typeText("\t\t\t\t\t\t\t\t5. Exit\n", 10);
         printf("\t\t\t\t\t\t\t\t");
